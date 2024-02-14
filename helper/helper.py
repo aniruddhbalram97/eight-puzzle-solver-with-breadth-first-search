@@ -1,5 +1,9 @@
 import numpy as np
 
+import sys
+
+sys.setrecursionlimit(1000000000)
+
 class PuzzleNode:
     def __init__(self, node_state_i, node_index_i, parent_node_index_i):
         self.node_state_i = node_state_i
@@ -14,9 +18,9 @@ class BFS:
         self.node_queue = []
         self.path_taken = []
         
-        initial_node = PuzzleNode(self.initial_state, 0, None)
-        self.visited_nodes.append(initial_node)
-        self.node_queue.append(initial_node)
+        self.initial_node = PuzzleNode(self.initial_state, 0, None)
+        self.visited_nodes.append(self.initial_node)
+        self.node_queue.append(self.initial_node)
         
     def create_node_copy(self, node):
         copied_node = PuzzleNode(None, None, None)
@@ -137,6 +141,9 @@ class BFS:
     
     def get_visited_nodes(self):
         return self.visited_nodes
+    
+    def get_initial_node(self):
+        return self.initial_node
     
     def write_nodes(self, file_path):
         f = open(file_path + "/Nodes.txt", "w")
