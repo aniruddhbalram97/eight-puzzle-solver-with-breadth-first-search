@@ -31,3 +31,27 @@ class BFS:
         node.node_state_i[curr_y][curr_x] = new_val
         node.node_state_i[new_y][new_x] = curr_val
         return node
+    
+    def move_zero(self, curr_node, del_x, del_y):
+        node = self.create_node_copy(curr_node)
+        zero_position = np.argwhere(node.node_state_i==0)[0]
+        new_pos_y, new_pos_x = (zero_position[0] + del_y), (zero_position[1] + del_x)
+        if(new_pos_y >= 0 and new_pos_y < node.node_state_i.shape[0] and new_pos_x >= 0 and new_pos_x < node.node_state_i.shape[1]):
+            node = self.swap_position(node, zero_position[0], zero_position[1], new_pos_y, new_pos_x)
+            node.node_index_i = len(self.visited_nodes)
+            node.parent_node_index_i = curr_node.node_index_i
+            if not self.already_exists(node):
+                new = True
+                return new, node
+            else:
+                new = False
+                return new, curr_node
+        else:
+            new = False
+            return new, curr_node
+    
+    def already_exists(self, node):
+        for i in self.visited_nodes:
+            if(i.node_state_i == node.node_state_i).all():
+                return True
+        return False
