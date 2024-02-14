@@ -39,5 +39,5 @@ if __name__ == "__main__":
     plot = Plot()
     
     # Call Member functions
-    plot.load_data('./../test_case/NodePath.txt')
+    plot.load_data('./test_case/NodePath.txt')
     plot.plot_nodes()
