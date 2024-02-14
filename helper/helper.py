@@ -55,3 +55,19 @@ class BFS:
             if(i.node_state_i == node.node_state_i).all():
                 return True
         return False
+    
+    def ActionMoveLeft(self, node):
+        status, new_node = self.move_zero(node , -1, 0)
+        return status, new_node
+
+    def ActionMoveUp(self, node):
+        status, new_node = self.move_zero(node , 0, -1)
+        return status, new_node
+
+    def ActionMoveRight(self, node):
+        status, new_node = self.move_zero(node , 1, 0)
+        return status, new_node
+
+    def ActionMoveDown(self, node):
+        status, new_node = self.move_zero(node , 0, 1)
+        return status, new_node
