@@ -33,3 +33,11 @@ class Plot:
                     print(" .. STEP ..", i)
                 self.print_matrix(self.data[i])
             return
+    
+if __name__ == "__main__":
+    # Instantiate
+    plot = Plot()
+    
+    # Call Member functions
+    plot.load_data('./../test_case/NodePath.txt')
+    plot.plot_nodes()
