@@ -71,3 +71,63 @@ class BFS:
     def ActionMoveDown(self, node):
         status, new_node = self.move_zero(node , 0, 1)
         return status, new_node
+    
+    def algorithm(self, node):
+        moved = False
+        if(node.node_state_i == self.goal_state).all():
+            self.visited_nodes.append(node)
+            self.generate_paths(node)
+            return
+        else:
+            status, new_node = self.ActionMoveLeft(node)
+            if (status):
+                self.visited_nodes.append(new_node)
+                self.node_queue.append(new_node)
+                moved = True
+            if(new_node.node_state_i == self.goal_state).all():
+                print("GOAL!")
+                self.generate_paths(new_node)
+                return
+            status, new_node = self.ActionMoveRight(node)
+            if (status):
+                self.visited_nodes.append(new_node)
+                self.node_queue.append(new_node)
+                moved = True
+            if(new_node.node_state_i == self.goal_state).all():
+                print("GOAL!")
+                self.generate_paths(new_node)
+                return
+            status, new_node = self.ActionMoveUp(node)
+            if (status):
+                self.visited_nodes.append(new_node)
+                self.node_queue.append(new_node)
+                moved = True
+            if(new_node.node_state_i == self.goal_state).all():
+                print("GOAL!")
+                self.generate_paths(new_node)
+                return
+            status, new_node = self.ActionMoveDown(node)
+            if (status):
+                self.visited_nodes.append(new_node)
+                self.node_queue.append(new_node)
+                moved = True
+            if(new_node.node_state_i == self.goal_state).all():
+                print("GOAL!")
+                self.generate_paths(new_node)
+                return
+            if (not moved):
+                self.node_queue.pop(0) 
+            self.algorithm(self.node_queue[0])
+            
+    def generate_paths(self, node):
+        last_node = self.create_node_copy(node)
+        if(last_node.parent_node_index_i == None):
+            return last_node
+        else:
+            while(last_node.parent_node_index_i != None):
+                self.path_taken.append(last_node)
+                for node_i in self.visited_nodes:
+                    if(node_i.node_index_i == last_node.parent_node_index_i):
+                        last_node = node_i
+                        break
+            self.path_taken.append(last_node)
