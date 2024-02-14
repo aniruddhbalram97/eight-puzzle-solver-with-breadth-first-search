@@ -7,3 +7,40 @@
 
 ### Dependencies
 - Numpy
+
+### Instructions
+
+```
+# Enter project directory
+cd <project_directory>
+
+# Create a directory for test_case
+mkdir test_case
+
+# Run main script
+python3 main.py
+
+# Run plot script to plot the outcome
+python3 utils/plot.py
+```
+
+### Demo Output
+- Initial State: |[4, 7, 8], [2, 1, 5], [3, 6, 0]|
+- Goal State: |[1, 4, 7], [2, 5, 8], [3, 6, 0]|
+
+```
+4 7 8 2 1 5 3 6 0
+4 7 8 2 1 5 3 0 6
+4 7 8 2 1 5 0 3 6
+4 7 8 0 1 5 2 3 6
+4 7 8 1 0 5 2 3 6
+4 7 8 1 5 0 2 3 6
+4 7 0 1 5 8 2 3 6
+4 0 7 1 5 8 2 3 6
+0 4 7 1 5 8 2 3 6
+1 4 7 0 5 8 2 3 6
+1 4 7 2 5 8 0 3 6
+1 4 7 2 5 8 3 0 6
+1 4 7 2 5 8 3 6 0
+```
+
