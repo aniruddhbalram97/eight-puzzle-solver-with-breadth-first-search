@@ -131,3 +131,20 @@ class BFS:
                         last_node = node_i
                         break
             self.path_taken.append(last_node)
+    
+    def get_path_taken(self):
+        return self.path_taken
+    
+    def get_visited_nodes(self):
+        return self.visited_nodes
+    
+    def write_nodes(self, file_path):
+        f = open(file_path + "/Nodes.txt", "w")
+        for n in self.visited_nodes:
+            f.write(str(n.node_state_i.ravel()) + "\n")
+            
+    def write_path_generated(self, file_path):
+        self.path_taken.reverse()
+        f = open(file_path + "/NodePath.txt", "w")
+        for n in self.path_taken:
+            f.write(str(n.node_state_i.ravel())[1: -1] + "\n")
